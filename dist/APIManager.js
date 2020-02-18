@@ -1,4 +1,4 @@
-class ApiManager {
+class APIManager {
 
     constructor() {
         this.cityArr = []
@@ -13,6 +13,8 @@ class ApiManager {
 
     async getCityData(cityName) {
         const city = await $.get(`/city/${cityName}`)
+        city.new = true
+        this.cityArr.unshift(city)
         return city;
     }
 
@@ -36,11 +38,4 @@ class ApiManager {
             }
         }
     }
-
 }
-
-a = new ApiManager;
-a.getDataFromDB();
-// a.getCityData('london');
-// a.saveCity("london");
-a.removeCity("London")
