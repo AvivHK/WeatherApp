@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossOrigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>MyWeather</title>
+</head>
+<body>
+
+    <div id="container">
+        <div id="searchBar">
+            <input type="text" placeholder="Enter city..">
+            <span class="underline"></span>
+            <i id="searchIcon" onclick="handleSearch()" class="fas fa-search"></i>
+        </div>
+        <div id="cities-container">
+        </div>
+    </div>
+
+    <script id="city-template" type="text/x-handlebars-template">
+        {{#each citiesArr}}
+        <div class="cityCard" data-id="{{name}}">
+            <div class="name">{{name}}</div>
+            <div class="temperature">{{temperature}}°</div>
+            <div class="condition">{{condition}}</div>
+            <div class="updateButton"><i class="fas fa-sync-alt"></i></div>
+            <img src="{{conditionPic}}">
+            <div class="add"><i class="fas fa-{{#if new}}plus{{else}}minus{{/if}}-circle"></i></div>
+        </div>
+        {{/each}}
+    </script>
+
+    <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src="APIManager.js"></script>
+    <script src="Render.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
