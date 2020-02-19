@@ -38,4 +38,18 @@ class APIManager {
             }
         }
     }
+    async updateCity(cityName) {
+        const city = await $.get(`/city/${cityName}`)
+
+        for (let cityIndex in this.cityData) {
+            if (this.cityData[cityIndex].name == cityName) {
+                if(this.cityData[cityIndex].new == true){
+                    chosenCity.new = true
+                }
+                this.cityData[cityIndex] = chosenCity
+                console.log("city: " + this.cityData[cityIndex].name + 
+                " has updated at: " + this.cityData[cityIndex].updatedAt)
+            }
+        }
+    }
 }

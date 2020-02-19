@@ -1,0 +1,114 @@
+
+body {
+    margin: 0px;
+    color: white;
+}
+
+#container {
+    font-family: Tahoma;
+    background-color: #f1c40f;
+    height: 100vh;
+}
+
+#searchBar {
+    padding-top: 30px;
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #CCC;
+    box-sizing: border-box;
+    font-size: 250%;
+    color: white;    
+    width: 85vw;
+}
+
+::placeholder{
+    color: white;
+}
+
+img {
+    grid-area: p;
+    height: 150%;
+}
+
+#searchIcon {
+    cursor: pointer;
+    font-size: 40px;
+    margin-left: 20px;
+    color: white;
+}
+
+.cityCard {
+    margin: 20px;
+    background-color: #0096fa;
+    border: 2px solid black;
+    border-radius: 20px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    display: grid;
+    padding: 1%;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas:
+        "a t t p p u"
+        "a t t p p u"
+        "a n n c c u";
+
+}
+
+.name {
+    grid-area: n;
+    font-size: 150%;
+}
+
+.updateButton {
+    grid-area: u;
+    width: auto;
+    color: black;
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 50px;
+    font-size: 15px;
+    padding: 10px;
+    margin: 5px;
+    justify-self: left;
+    cursor: pointer;
+}
+
+.temperature {
+    grid-area: t;
+    font-size: 400%;
+}
+
+.add {
+    grid-area: a;
+    cursor: pointer;
+}
+
+.condition {
+    grid-area: c;
+    font-size: 150%;
+}
+
+.fa-plus-circle {
+    font-size: 300%;
+    color: #ecf0f1
+
+}
+
+.fa-minus-circle {
+    color: #ecf0f1;
+    font-size: 300%;
+    
+
+}
+
+.fa-sync-alt {
+    font-size: 200%;
+    
+}

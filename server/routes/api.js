@@ -14,7 +14,7 @@ router.get('/city/:cityName', async (req, res) => {
         request(`${url}?q=${cityName}&appid=${myKey}&units=metric`, function (err, result) {
             let body = JSON.parse(result.body)
             if (body.name) {
-                const newCity = {
+                const newCity = {cd
                     name: body.name,
                     temperature: Math.round(body.main.temp),
                     condition: body.weather[0].description,
