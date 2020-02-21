@@ -1,33 +1,73 @@
+@keyframes cloud {
+    50% {
+        left: 100vw;
+    }
+    100% {
+        left: -100vw;
+    }
+}
 
 body {
     margin: 0px;
     color: white;
+    overflow-x: hidden;
+    background-color: #3498db;
+}
+
+#cloud {
+    animation-name: cloud;
+    width: 45vw;
+    height: 20vh;
+    position: absolute;
+    top: 20px;
+    left: 100vw;
+    animation-duration: 8s;
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.915);
+    animation-iteration-count: infinite;
 }
 
 #container {
     font-family: Tahoma;
-    background-color: #f1c40f;
     height: 100vh;
+    display: grid;
+
 }
 
 #searchBar {
-    padding-top: 30px;
-    margin-left: 40px;
-    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    background-color: white;
+    width: calc(90vw - 30px);
+    border-radius: 20px;
+    height: 60px;
+    justify-self: center;
+    margin-top: 30px;
+}
+
+#cities-container {
+    margin-top: 40px;
+    display: grid;
+    justify-self: center;
+
+
 }
 
 input {
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #CCC;
+    border: white 1px;
+    padding-left: 15px;
     box-sizing: border-box;
     font-size: 250%;
-    color: white;    
-    width: 85vw;
+    height: 60px;
+    color: black;
+    width: calc(90vw - 40%);
+    border: none;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
 }
 
-::placeholder{
-    color: white;
+::placeholder {
+    color: black;
 }
 
 img {
@@ -36,42 +76,34 @@ img {
 }
 
 #searchIcon {
-    cursor: pointer;
-    font-size: 40px;
-    margin-left: 20px;
-    color: white;
+    align-self: center;
+    font-size: 25px;
+    color: black;
 }
 
 .cityCard {
     margin: 20px;
-    background-color: #0096fa;
-    border: 2px solid black;
+    margin-bottom: 40px;
+    box-shadow: 0px 0px 38px 5px rgba(235, 243, 243, 0.75);
+    background-color: hsla(0, 0%, 100%, 0.815);
     border-radius: 20px;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     display: grid;
-    padding: 1%;
     justify-items: center;
     align-items: center;
-    grid-template-areas:
-        "a t t p p u"
-        "a t t p p u"
-        "a n n c c u";
-
+    grid-template-areas: "a t t p p u" "a t t p p u" "a n n c c u";
+    width: calc(90vw - 30px);
 }
 
 .name {
     grid-area: n;
+    color: #7f8c8d;
     font-size: 150%;
 }
 
 .updateButton {
     grid-area: u;
     width: auto;
-    color: black;
-    background-color:white;
-    border: 1px solid black;
+    background-color: #f1c40f;
     border-radius: 50px;
     font-size: 15px;
     padding: 10px;
@@ -82,6 +114,7 @@ img {
 
 .temperature {
     grid-area: t;
+    color: #7f8c8d;
     font-size: 400%;
 }
 
@@ -92,23 +125,117 @@ img {
 
 .condition {
     grid-area: c;
+    color: #7f8c8d;
     font-size: 150%;
 }
 
 .fa-plus-circle {
     font-size: 300%;
-    color: #ecf0f1
-
+    color: #2ecc71
 }
 
 .fa-minus-circle {
-    color: #ecf0f1;
+    color: #e74c3c;
     font-size: 300%;
-    
-
 }
 
 .fa-sync-alt {
     font-size: 200%;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+ }
+
+
+ @media only screen and (min-width: 800px) {
+
+    #container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    }
+
+    #searchBar {
+        border: white 1px;
+        display: grid;
+        grid-template-columns: 6fr 1fr;
+        width: calc(45vw - 30px);
+        border-radius: 20px;
+        height: 60px;
+        justify-self: center;
+        align-self: center;
+        background-color: #3498db;
+        border: solid 3px white;
+    }
+    #searchIcon {
+        align-self: center;
+        font-size: 25px;
+        color: white;
+    }
     
+    input {
+        font-size: 250%;
+        color: white;
+        width: calc(40vw - 20%);
+        background-color: #3498db;
+    }
+
+    ::placeholder {
+        color: white;
+    }
+
+    .cityCard {
+        margin: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0px 0px 38px 5px rgba(235, 243, 243, 0.75);
+        background-color: hsla(0, 0%, 100%, 0.815);
+        border-radius: 20px;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-areas: "a t t p p u" "a t t p p u" "a n n c c u";
+        width: calc(45vw - 30px);
+        height: 120px;
+    }
+
+    .name {
+        font-size: 100%;
+    }
+    
+    .temperature {
+        font-size: 300%;
+    }
+    
+    .condition {
+        font-size: 100%;
+    }
+
+    .fa-plus-circle {
+        font-size: 200%;
+    }
+
+    .fa-minus-circle {
+        font-size: 200%;
+    }
+    
+    .fa-sync-alt {
+        font-size: 150%;
+    }
+
+
+    #cloud {
+        animation-name: cloud;
+        width: 45vw;
+        height: 35vh;
+        position: absolute;
+        top: 20px;
+        left: 100vw;
+        animation-duration: 8s;
+        animation-iteration-count: infinite;
+    }
 }

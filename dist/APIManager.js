@@ -11,16 +11,41 @@ class APIManager {
         }
     }
 
-    async getCityData(cityName) {
-        const city = await $.get(`/city/${cityName}`)
-        city.new = true
-        this.cityArr.unshift(city)
-        return city;
+    isExist(cityName) {
+        for (let city of this.cityArr) {
+            if (city.name.toLowerCase() === cityName.toString().toLowerCase()) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    async saveCity(cityName) {
-        let city = await this.getCityData(cityName)
-        $.post(`/city/`, city)
+    async showCity(cityName){
+        if(!this.isExist(cityName)){
+            let city = await $.get(`/city/${cityName}`)
+            this.cityArr.unshift(city)
+            city.new = true
+        }
+    }
+
+
+    async saveCity(cityName, index) {
+        let city = await $.get(`/city/${cityName}`)
+        city.new = false
+        if (index) {
+            await $.post(`/city/`, city)
+            this.cityArr.splice(index, 0, city)
+        }
+        else {
+            await $.post(`/city/`, city)
+            const index = this.cityArr.findIndex(a => a.name == cityName)
+            if(index === 0 || index){
+                this.cityArr.splice(index,1,city)
+            }
+            else{
+                this.cityArr.unshift(city)
+            }
+        }
     }
 
     async removeCity(cityName) {
@@ -28,7 +53,6 @@ class APIManager {
             url: `/city/${cityName}`,
             type: 'DELETE',
             success: function () {
-                console.log(`deleting ${cityName}!`)
             }
         })
         for (let i in this.cityArr) {
@@ -39,16 +63,22 @@ class APIManager {
         }
     }
     async updateCity(cityName) {
-        const city = await $.get(`/city/${cityName}`)
-
-        for (let cityIndex in this.cityData) {
-            if (this.cityData[cityIndex].name == cityName) {
-                if(this.cityData[cityIndex].new == true){
-                    chosenCity.new = true
-                }
-                this.cityData[cityIndex] = chosenCity
-                console.log("city: " + this.cityData[cityIndex].name + 
-                " has updated at: " + this.cityData[cityIndex].updatedAt)
+        let isNew;
+        if(this.cityArr.find(a => a.name == cityName).new){
+            isNew = true
+        }
+        else{
+            isNew = false;
+        }
+        let city = await $.ajax({
+            url: `/city/${cityName}`,
+            type: `PUT`,
+            success: function () { }
+        })
+        for (let cityIndex in this.cityArr) {
+            if (this.cityArr[cityIndex].name == cityName) {
+                this.cityArr[cityIndex] = city
+                isNew ? city.new=true : city.new=false
             }
         }
     }
