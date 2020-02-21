@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossOrigin="anonymous">
@@ -8,19 +9,19 @@
     <link rel="stylesheet" href="style.css">
     <title>MyWeather</title>
 </head>
-<body>
 
-    <div id="container">
-        <div id="searchBar">
-            <input type="text" placeholder="Enter city..">
-            <span class="underline"></span>
-            <i id="searchIcon" onclick="handleSearch()" class="fas fa-search"></i>
-        </div>
-        <div id="cities-container">
-        </div>
-    </div>
 
-    <script id="city-template" type="text/x-handlebars-template">
+        <div id="container">
+            <div id="searchBar">
+                <input type="text" placeholder="Enter city..">
+                <i id="searchIcon" onclick="handleSearch()" class="fas fa-search"></i>
+            </div>
+            <img id="cloud" src="https://purepng.com/public/uploads/large/11498493571qdikf8k49uogdl7steagkmhic6kvjidf2rf5ga0shxskr9xztcke16a9mdpkns3gloegtowd2ckyg0vk24x1w1pcofyzokcrx1v4.png" alt="">
+            <div id="cities-container">
+            </div>
+        </div>
+
+        <script id="city-template" type="text/x-handlebars-template">
         {{#each citiesArr}}
         <div class="cityCard" data-id="{{name}}">
             <div class="name">{{name}}</div>
@@ -33,10 +34,16 @@
         {{/each}}
     </script>
 
-    <script src="./handlebars/dist/handlebars.js"></script>
-    <script src="./jquery/dist/jquery.js"></script>
-    <script src="APIManager.js"></script>
-    <script src="Render.js"></script>
-    <script src="main.js"></script>
+
+    <footer class="footer">
+        <small>&copy; Copyright 2020, Aviv Hakmon</small>
+</footer>
+
+        <script src="./handlebars/dist/handlebars.js"></script>
+        <script src="./jquery/dist/jquery.js"></script>
+        <script src="APIManager.js"></script>
+        <script src="Render.js"></script>
+        <script src="main.js"></script>
 </body>
+
 </html>

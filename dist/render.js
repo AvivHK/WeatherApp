@@ -1,8 +1,11 @@
 class Renderer{
+    constructor(){
+        this.source = $('#city-template').html();
+        this.template = Handlebars.compile(this.source);
+    }
+
     render(citiesArr){
-        let source = $('#city-template').html();
-        let template = Handlebars.compile(source);
-        let newHTML = template({citiesArr});
+        let newHTML = this.template({citiesArr});
         $('#cities-container').empty().append(newHTML);
     }
 }

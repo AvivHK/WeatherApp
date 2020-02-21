@@ -14,11 +14,11 @@ router.get('/city/:cityName', async (req, res) => {
         request(`${url}?q=${cityName}&appid=${myKey}&units=metric`, function (err, result) {
             let body = JSON.parse(result.body)
             if (body.name) {
-                const newCity = {cd
+                const newCity = {
                     name: body.name,
                     temperature: Math.round(body.main.temp),
                     condition: body.weather[0].description,
-                    conditionPic: `http://openweathermap.org/img/wn/${body.weather[0].icon}@2x.png`
+                    conditionPic: `http://openweathermap.org/img/wn/${body.weather[0].icon}@2x.png`,
                 }
                 res.send(newCity)
             }
@@ -37,6 +37,28 @@ router.post('/city', function (req, res) {
     let city = new City(body)
     city.save();
     res.send(`Done, added ${city.name}`)
+})
+
+
+router.put('/city/:cityName', function (req, res) {
+    let cityName = req.params.cityName
+    request(`${url}?q=${cityName}&appid=${myKey}&units=metric`, function (err, result) {
+        let body = JSON.parse(result.body)
+        City.findOneAndUpdate(
+            { name: cityName },
+            {
+                temperature: Math.round(body.main.temp),
+                condition: body.weather[0].description,
+                conditionPic: `http://openweathermap.org/img/wn/${body.weather[0].icon}@2x.png`
+            }, function(err,res1){})
+        let newCity = new City({
+            name: body.name,
+            temperature: Math.round(body.main.temp),
+            condition: body.weather[0].description,
+            conditionPic: `http://openweathermap.org/img/wn/${body.weather[0].icon}@2x.png`,
+        })
+        res.send(newCity)
+    })
 })
 
 router.delete('/city/:city', function (req, res) {
